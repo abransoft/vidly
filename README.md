@@ -1,2 +1,2 @@
 # Vidly
-A small RESTful API genres module
+A small RESTful API
