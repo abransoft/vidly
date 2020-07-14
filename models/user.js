@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
-const Joi = require('@hapi/joi');
+const mongoose = require("mongoose");
+const Joi = require("@hapi/joi");
 
-const User = mongoose.model('User', new mongoose.Schema({
+const User = mongoose.model("User", new mongoose.Schema({
     name: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 50,
-        trim: true
+        trim: true,
     },
     email: {
         type: String,
@@ -15,22 +15,23 @@ const User = mongoose.model('User', new mongoose.Schema({
         unique: true,
         minlength: 5,
         maxlength: 50,
-        trim: true
+        trim: true,
     },
     password: {
         type: String,
         required: true,
         minlength: 6,
         maxlength: 22,
-        trim: true
-    }
-}));
+        trim: true,
+    },
+})
+);
 
 function validateUser(user) {
     const schema = Joi.object({
-        name: Joi.string().alphanum().min(5).max(50).required(),
+        name: Joi.string().min(5).max(50).required(),
         email: Joi.string().min(5).max(50).email({ minDomainSegments: 2 }).required(),
-        password: Joi.string().alphanum().min(6).max(22).required()
+        password: Joi.string().alphanum().min(6).max(22).required(),
     });
 
     return schema.validate(user);
